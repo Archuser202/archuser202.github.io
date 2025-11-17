@@ -20,6 +20,9 @@ const Header: React.FC = () => {
         opacity={1}
         blur={16}
         backgroundOpacity={0.05}
+        redOffset={0}
+        blueOffset={10}
+        greenOffset={20}
       >
         <nav className="flex w-full items-center px-6">
           <a href="#" className="font-mono text-xl font-bold tracking-wider text-gray-200" data-cursor-hover>

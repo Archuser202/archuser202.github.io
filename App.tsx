@@ -1,12 +1,12 @@
-
-
+import Silk from './components/Silk/Silk';
+import Balatro from './components/Balatro/Balatro';
 import React from 'react';
 import SplitText from './components/SplitText';
 import CustomCursor from './components/CustomCursor';
 import { GitHubIcon, ExternalLinkIcon } from './components/Icons';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
-import BalatroBackground from './components/BalatroBackground';
+
 import Spacer from './components/Spacer';
 
 const projects = [
@@ -32,10 +32,10 @@ const projects = [
     liveUrl: null,
   },
   {
-    title: 'archuser.nvim',
-    description: 'My personal Neovim configuration, finely tuned for web development and written entirely in Lua.',
-    tags: ['Neovim', 'Lua', 'Dotfiles'],
-    githubUrl: 'https://github.com/Archuser202/archuser.nvim',
+    title: 'Wundows.Theme',
+    description: 'My personal Win10 configuration.',
+    tags: ['YASB', 'Theme', 'Terminal', 'Powershell', 'Win10' ,'Customization'],
+    githubUrl: 'https://github.com/Archuser202/AReallyGoodWindowsSetup',
     liveUrl: null,
   },
 ];
@@ -78,21 +78,34 @@ const ProjectCard: React.FC<(typeof projects)[0]> = ({ title, description, tags,
 
 const App: React.FC = () => {
   return (
-    <div className="relative min-h-screen w-full bg-[#101010] text-gray-300 font-sans antialiased">
-      <div className="fixed top-0 left-0 -z-10 h-full w-full opacity-50">
-        <BalatroBackground color="#4A454E" />
+    <div className="relative min-h-screen w-full text-gray-300 font-sans antialiased">
+      <div className="fixed top-0 left-0 -z-10 h-full w-full opacity-100">
+        {/* <Balatro
+          isRotate={false}
+          mouseInteraction={true}
+          pixelFilter={700}
+          color1='#101010'
+          color2='#244953ff'
+        /> */}
+        <Silk
+          speed={5}
+          scale={1}
+          color="#145b9aff"
+          noiseIntensity={1.5}
+          rotation={0}
+        />
       </div>
       <CustomCursor />
       <Header />
       <div className="relative z-10 mx-auto max-w-4xl px-4 pt-24">
         <section id="hero" className="flex min-h-screen flex-col items-center justify-center text-center scroll-mt-24">
-          <SplitText>Hello, I'm Arch</SplitText>
+          <SplitText>Hello, I'm ArchUser</SplitText>
           <motion.p 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0, transition: { delay: 1.5, duration: 0.8 } }}
             className="mt-4 max-w-xl text-lg text-gray-400 md:text-xl"
           >
-            Linux enthusiast, Developer, and Student. Crafting elegant solutions and exploring the world of open-source.
+            Linux enthusiast, Developer Tech reviewer . Crafting elegant solutions and exploring the world of open-source.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
