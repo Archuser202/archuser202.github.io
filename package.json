@@ -1,5 +1,6 @@
 {
   "name": "react-portfolio",
+  "homepage": "https://archuser202.github.io/PortfolioV2.0 ",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,11 +8,15 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext ts,tsx,js,jsx"
+    "lint": "eslint . --ext ts,tsx,js,jsx",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+
   },
   "dependencies": {
     "@react-three/fiber": "^9.4.0",
     "framer-motion": "^12.23.24",
+    "gh-pages": "^6.3.0",
     "i": "^0.3.7",
     "ogl": "^1.0.11",
     "react": "^19.2.0",
