@@ -6,7 +6,7 @@ import CustomCursor from './components/CustomCursor';
 import { GitHubIcon, ExternalLinkIcon } from './components/Icons';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
-
+import ClickSpark from './components/ClickSpark';
 import Spacer from './components/Spacer';
 import GlassSurface from './components/GlassSurface';
 
@@ -43,6 +43,15 @@ const projects = [
 
 const ProjectCard: React.FC<(typeof projects)[0]> = ({ title, description, tags, githubUrl, liveUrl }) => {
   return (
+  <ClickSpark
+    sparkColor='#ac231cff'
+    sparkSize={10}
+    sparkRadius={15}
+    sparkCount={8}
+    duration={400}
+  >
+      
+
     <motion.div
       data-cursor-hover
       initial={{ opacity: 0, y: 20 }}
@@ -55,7 +64,7 @@ const ProjectCard: React.FC<(typeof projects)[0]> = ({ title, description, tags,
         width="100%"
         height="100%"
         borderRadius={12}
-        opacity={0.6}
+        opacity={1}
         blur={4}
         backgroundOpacity={0.05}
         blueOffset={10}
@@ -86,6 +95,7 @@ const ProjectCard: React.FC<(typeof projects)[0]> = ({ title, description, tags,
         </div>
       </GlassSurface>
     </motion.div>
+  </ClickSpark>
   );
 };
 
@@ -93,6 +103,13 @@ const ProjectCard: React.FC<(typeof projects)[0]> = ({ title, description, tags,
 
 const App: React.FC = () => {
   return (
+  <ClickSpark
+  sparkColor='#ef444488'
+  sparkSize={20}
+  sparkRadius={30}
+  sparkCount={16}
+  duration={500}
+  >  
     <div className="relative min-h-screen w-full text-gray-300 font-sans antialiased">
       <div className="fixed top-0 left-0 -z-10 h-full w-full opacity-100">
         {/* <Balatro
@@ -153,6 +170,7 @@ const App: React.FC = () => {
         </section>
       </div>
     </div>
+  </ClickSpark>
   );
 };
 
