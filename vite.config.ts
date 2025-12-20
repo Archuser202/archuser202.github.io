@@ -20,5 +20,14 @@ export default defineConfig(({ mode }) => {
           '@': path.resolve(__dirname, '.'),
         }
       }
+      ,
+      optimizeDeps: {
+        exclude: [
+          // Exclude problematic chunk to avoid optimizer errors
+          'chunk-G3PMV62Z',
+          'chunk-KMU3Z7QX'
+        ]
+      },
+      cacheDir: 'vite_cache'
     };
 });

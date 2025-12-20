@@ -1,4 +1,4 @@
-
+import AnimatedContent from './components/AnimatedContent'
 import React from 'react';
 import Silk from './components/Silk/Silk';
 import SplitText from './components/SplitText';
@@ -9,6 +9,7 @@ import Header from './components/Header';
 import ClickSpark from './components/ClickSpark';
 import Spacer from './components/Spacer';
 import GlassSurface from './components/GlassSurface';
+import TargetCursor from './components/TargetCursor';
 
 const projects = [
   {
@@ -52,7 +53,7 @@ const ProjectCard: React.FC<(typeof projects)[0]> = ({ title, description, tags,
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5 }}
-      className="block h-full group focus:outline-none"
+      className="block h-full group focus:outline-none cursor-target"
     >
       <ClickSpark
         sparkColor='#ac231cff'
@@ -61,36 +62,51 @@ const ProjectCard: React.FC<(typeof projects)[0]> = ({ title, description, tags,
         sparkCount={8}
         duration={400}
       >
-        <GlassSurface
-          width="100%"
-          height="100%"
-          borderRadius={12}
-          opacity={1}
-          blur={32}
-          backgroundOpacity={0.05}
-          className="transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/20"
-        >
-          <div className="flex h-full w-full flex-col justify-between p-6">
-            <div>
-              <div className="flex items-center justify-between">
-                <h3 className="font-mono text-xl font-bold text-gray-200 group-hover:text-red-500 transition-colors">{title}</h3>
-                <ExternalLinkIcon className="h-5 w-5 text-gray-500 opacity-0 group-hover:opacity-100 group-hover:text-red-500 transition-all transform translate-y-1 group-hover:translate-y-0" />
+        <AnimatedContent
+          distance={150}
+          direction="horizontal"
+          reverse={false}
+          duration={1.2}
+          ease="bounce.out"
+          initialOpacity={0.2}
+          animateOpacity
+          scale={1.1}
+          threshold={0.2}
+          delay={0.3}
+        > 
+          <GlassSurface
+            width="100%"
+            height="100%"
+            borderRadius={12}
+            opacity={0}
+            blur={30}
+            displace={10}
+            distortionScale={300}
+            backgroundOpacity={0.015}
+            className="transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/20"
+          >
+            <div className="flex h-full w-full flex-col justify-between p-6">
+              <div>
+                <div className="flex items-center justify-between">
+                  <h3 className="font-mono text-xl font-bold text-gray-200 group-hover:text-red-500 transition-colors">{title}</h3>
+                  <ExternalLinkIcon className="h-5 w-5 text-gray-500 opacity-0 group-hover:opacity-100 group-hover:text-red-500 transition-all transform translate-y-1 group-hover:translate-y-0" />
+                </div>
+                <p className="mt-2 text-gray-400 text-sm group-hover:text-gray-200 transition-colors">{description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {tags.map((tag) => (
+                    <span key={tag} className="rounded-full bg-zinc-800/60 px-3 py-1 text-[10px] font-mono uppercase text-red-400 ring-1 ring-inset ring-white/10">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <p className="mt-2 text-gray-400 text-sm group-hover:text-gray-200 transition-colors">{description}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {tags.map((tag) => (
-                  <span key={tag} className="rounded-full bg-zinc-800/60 px-3 py-1 text-[10px] font-mono uppercase text-red-400 ring-1 ring-inset ring-white/10">
-                    {tag}
-                  </span>
-                ))}
+              <div className="mt-8 flex items-center justify-between">
+                <GitHubIcon className="h-6 w-6 text-gray-500 group-hover:text-white transition-colors" />
+                <span className="text-[10px] font-mono uppercase tracking-widest text-gray-500 group-hover:text-red-500">View Project</span>
               </div>
             </div>
-            <div className="mt-8 flex items-center justify-between">
-              <GitHubIcon className="h-6 w-6 text-gray-500 group-hover:text-white transition-colors" />
-              <span className="text-[10px] font-mono uppercase tracking-widest text-gray-500 group-hover:text-red-500">View Project</span>
-            </div>
-          </div>
-        </GlassSurface>
+          </GlassSurface>
+        </AnimatedContent>
       </ClickSpark>
     </motion.a>
   );
@@ -107,17 +123,22 @@ const App: React.FC = () => {
     >  
       <div className="relative min-h-screen w-full text-gray-300 font-sans antialiased overflow-x-hidden">
         {/* Background Layer */}
-        <div className="fixed top-0 left-0 -z-10 h-full w-full opacity-60">
+        <div className="fixed top-0 left-0 -z-10 h-full w-full">
           <Silk
             speed={3}
             scale={1}
-            color="#145b9aff"
+            color="#ac231c"
             noiseIntensity={1.2}
             rotation={0}
           />
         </div>
-        
-        <CustomCursor />
+      <div>
+        <TargetCursor 
+          spinDuration={2}
+          hideDefaultCursor={true}
+          parallaxOn={true}
+        />
+
         <Header />
         
         <div className="relative z-10 mx-auto max-w-4xl px-4 pt-24">
@@ -136,7 +157,7 @@ const App: React.FC = () => {
               animate={{ opacity: 1, y: 0, transition: { delay: 1.8, duration: 0.8 } }}
               className="mt-8 flex items-center gap-6"
             >
-              <a href="https://github.com/Archuser202" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" data-cursor-hover className="transition-transform hover:scale-110">
+              <a href="https://github.com/Archuser202" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" data-cursor-hover className="transition-transform hover:scale-110 cursor-target">
                 <GitHubIcon className="h-10 w-10 text-gray-400 transition-colors hover:text-white" />
               </a>
             </motion.div>
@@ -166,6 +187,7 @@ const App: React.FC = () => {
             &copy; {new Date().getFullYear()} ARCH &bull; BUILT WITH PASSION
           </footer>
         </div>
+        </div>  
       </div>
     </ClickSpark>
   );
