@@ -3,12 +3,12 @@ import React from 'react';
 import Silk from './components/Silk/Silk';
 import SplitText from './components/SplitText';
 import CustomCursor from './components/CustomCursor';
-import { GitHubIcon, ExternalLinkIcon } from './components/Icons';
+import { GitHubIcon, ExternalLinkIcon, YouTubeIcon } from './components/Icons';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
-import ClickSpark from './components/ClickSpark';
 import Spacer from './components/Spacer';
 import GlassSurface from './components/GlassSurface';
+import GradientText from './components/GradientText';
 import TargetCursor from './components/TargetCursor';
 
 const projects = [
@@ -55,13 +55,6 @@ const ProjectCard: React.FC<(typeof projects)[0]> = ({ title, description, tags,
       transition={{ duration: 0.5 }}
       className="block h-full group focus:outline-none cursor-target"
     >
-      <ClickSpark
-        sparkColor='#ac231cff'
-        sparkSize={10}
-        sparkRadius={15}
-        sparkCount={8}
-        duration={400}
-      >
         <AnimatedContent
           distance={150}
           direction="horizontal"
@@ -107,20 +100,12 @@ const ProjectCard: React.FC<(typeof projects)[0]> = ({ title, description, tags,
             </div>
           </GlassSurface>
         </AnimatedContent>
-      </ClickSpark>
     </motion.a>
   );
 };
 
 const App: React.FC = () => {
   return (
-    <ClickSpark
-      sparkColor='#ef444488'
-      sparkSize={20}
-      sparkRadius={30}
-      sparkCount={16}
-      duration={500}
-    >  
       <div className="relative min-h-screen w-full text-gray-300 font-sans antialiased overflow-x-hidden">
         {/* Background Layer */}
         <div className="fixed top-0 left-0 -z-10 h-full w-full">
@@ -144,7 +129,16 @@ const App: React.FC = () => {
         <div className="relative z-10 mx-auto max-w-4xl px-4 pt-24">
           {/* Hero Section */}
           <section id="hero" className="flex min-h-screen flex-col items-center justify-center text-center scroll-mt-24">
-            <SplitText>Hello, I'm ArchUser</SplitText>
+            <SplitText>
+              <GradientText
+                colors={["#27beff","#9fe2ff","#9ecfef"]}
+                animationSpeed={1}
+                showBorder={false}
+                className="custom-class .cursor-target"
+              >
+                Hello, I'm ArchUser
+              </GradientText>
+            </SplitText>
             <motion.p 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0, transition: { delay: 1.5, duration: 0.8 } }}
@@ -158,7 +152,10 @@ const App: React.FC = () => {
               className="mt-8 flex items-center gap-6"
             >
               <a href="https://github.com/Archuser202" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" data-cursor-hover className="transition-transform hover:scale-110 cursor-target">
-                <GitHubIcon className="h-10 w-10 text-gray-400 transition-colors hover:text-white" />
+                <GitHubIcon className="h-10 w-10 text-gray-400 transition-colors hover:text-black" />
+              </a>
+              <a href="https://www.youtube.com/@Arch-User-202" target="_blank" rel="noopener noreferrer" aria-label="YouTube Channel" data-cursor-hover className="transition-transform hover:scale-110 cursor-target">
+                <YouTubeIcon className="h-10 w-10 text-gray-400 transition-colors hover:text-red-500" />
               </a>
             </motion.div>
           </section>
@@ -189,7 +186,6 @@ const App: React.FC = () => {
         </div>
         </div>  
       </div>
-    </ClickSpark>
   );
 };
 

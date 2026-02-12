@@ -1,12 +1,22 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 
+import { ReactNode } from 'react';
+
 interface SplitTextProps {
-  children: string;
+  children: ReactNode;
+  className?: string;
 }
 
-const SplitText: React.FC<SplitTextProps> = ({ children }) => {
-  const letters = children.split('');
+const SplitText: React.FC<SplitTextProps> = ({ children, className = '' }) => {
+  // If children is a string, split into letters. If not, wrap as a single span.
+  let letters: ReactNode[];
+  if (typeof children === 'string') {
+    letters = children.split('');
+  } else {
+    // For ReactNode, wrap as a single span for animation
+    letters = [children];
+  }
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -39,11 +49,11 @@ const SplitText: React.FC<SplitTextProps> = ({ children }) => {
 
   return (
     <motion.h1
-      className="font-mono text-center text-6xl font-bold tracking-wider text-gray-300 md:text-8xl"
+      className={className + " font-mono text-center text-6xl font-bold tracking-wider text-gray-300 md:text-8xl"}
       variants={container}
       initial="hidden"
       animate="visible"
-      aria-label={children}
+      aria-label={typeof children === 'string' ? children : undefined}
     >
       {letters.map((letter, index) => (
         <motion.span
@@ -51,7 +61,7 @@ const SplitText: React.FC<SplitTextProps> = ({ children }) => {
           variants={child}
           className="inline-block"
         >
-          {letter === ' ' ? '\u00A0' : letter}
+          {typeof letter === 'string' ? (letter === ' ' ? '\u00A0' : letter) : letter}
         </motion.span>
       ))}
     </motion.h1>
