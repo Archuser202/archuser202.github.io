@@ -34,10 +34,10 @@ const projects = [
     liveUrl: null,
   },
   {
-    title: 'Wundows.Theme',
+    title: 'Wundows.Config',
     description: 'My personal Win10 configuration featuring YASB, custom terminal, and PowerShell profile.',
     tags: ['YASB', 'Theme', 'Terminal', 'Powershell', 'Win10' ,'Customization'],
-    githubUrl: 'https://github.com/Archuser202/AReallyGoodWindowsSetup',
+    githubUrl: 'https://github.com/Archuser202/Windows.config',
     liveUrl: null,
   },
 ];
